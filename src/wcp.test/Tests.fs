@@ -25,6 +25,9 @@ type LoggerTest (output: ITestOutputHelper) =
     let t = typedefof<Bar>
     t.GetConstructors()
     |> Array.iter log
+
+
+
     Assert.True(true)
     //t.GetConstructors()
     //|> Array.iter (fun x -> 
