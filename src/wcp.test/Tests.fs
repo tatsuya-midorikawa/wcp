@@ -17,10 +17,6 @@ type LoggerTest (output: ITestOutputHelper) =
   let log msg = output.WriteLine $"{msg}"
 
   [<Fact>]
-  member __.``My test`` () =
-    Assert.True(true)
-
-  [<Fact>]
   member __.``exp`` () =
     let t = typedefof<Bar>
     t.GetConstructors()

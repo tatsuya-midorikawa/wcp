@@ -14,7 +14,7 @@ type Command (args: string[], ?is'fsx: bool) =
       match is'fsx with
       | Some is'fsx -> 
         if is'fsx
-        then if 1 < args.Length then args[1] else ""
+        then if 1 < args.Length then args.[1] else ""
         else ""
       | None -> args.FirstOrDefault()
     HttpUtility.UrlDecode(parameter, UTF8Encoding(false))
