@@ -1,10 +1,17 @@
 ﻿module Wcp
 
+open System
 open System.Linq
 open System.Web
 open System.Text
+open System.Collections.Generic
 
+type internal dict<'key, 'value> = Dictionary<'key, 'value>
 type Context = { cmd: string; param: string }
+
+type ProtocolAttribute (name: string) =
+  inherit System.Attribute()
+  member val name = name with get
 
 [<AbstractClass>]
 type Command (args: string[], ?is'fsx: bool) =
@@ -23,6 +30,14 @@ type Command (args: string[], ?is'fsx: bool) =
     let cmd = if 0 <= idx then raw'.Substring(0, idx) else ""
     let param = if 0 <= idx then raw'.Substring(idx + 1) else ""
     { cmd = cmd; param = param }
+  // TODO: 
+  let protocols' : dict<string, Action> =
+    // ProtocolAttribute 付きのメソッドを列挙
+
+    // name プロパティをキー, メソッドを値として,
+    // dict<_,_> へ追加
+
+    raise (exn "not impl")
 
   member __.args = args'
   member __.raw = raw'
