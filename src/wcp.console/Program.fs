@@ -1,7 +1,13 @@
-﻿// type FooCommand (args: string[]) =
-//   inherit Wcp.Command(args)
+﻿type FooCommand (args: string[]) =
+  inherit Wcp.Command(args)
+  [<Wcp.Protocol(name = "proto")>]
+  member __.foo() =
+    printfn $"{__.ctx}"
+
+FooCommand([| "proto://test%5Cfoo%5Cbar" |]).run() |> (printfn "%A")
 
 // let cmd = FooCommand([| "proto://test%5Cfoo%5Cbar" |])
+
 // cmd.ctx |> printfn "%A"
 
 // let s1 = "foo"
@@ -12,18 +18,18 @@
 
 // s2.Substring(0, s2.IndexOf(":")) |> printfn "s2 substring: %s"
 
-open System.Linq
+// open System.Linq
 
-type Foo () =
-  [<Wcp.Protocol(name = "abc")>]
-  member __.a() = ()
-  member __.b() = ()
+// type Foo () =
+//   [<Wcp.Protocol(name = "abc")>]
+//   member __.a() = ()
+//   member __.b() = ()
 
-let foo = Foo()
-let ty = foo.GetType()
-let methods = ty.GetMethods()
-methods
-|> Array.filter (fun m -> m.IsDefined(typeof<Wcp.ProtocolAttribute>, false))
-|> Array.iter (fun m -> 
-  let protocol = m.GetCustomAttributes(typeof<Wcp.ProtocolAttribute>, false)[0] :?> Wcp.ProtocolAttribute
-  printfn $"{m.Name}: {protocol.name}")
+// let foo = Foo()
+// let ty = foo.GetType()
+// let methods = ty.GetMethods()
+// methods
+// |> Array.filter (fun m -> m.IsDefined(typeof<Wcp.ProtocolAttribute>, false))
+// |> Array.iter (fun m -> 
+//   let protocol = m.GetCustomAttributes(typeof<Wcp.ProtocolAttribute>, false)[0] :?> Wcp.ProtocolAttribute
+//   printfn $"{m.Name}: {protocol.name}")
