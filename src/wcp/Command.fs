@@ -33,7 +33,7 @@ type Command (args: string[], ?is'fsx: bool) =
   // TODO: 
   let protocols' : dict<string, Action> =
     // ProtocolAttribute 付きのメソッドを列挙
-
+    
     // name プロパティをキー, メソッドを値として,
     // dict<_,_> へ追加
 
