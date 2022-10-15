@@ -5,6 +5,7 @@
     printfn $"{__.ctx}"
 
 FooCommand([| "proto://test%5Cfoo%5Cbar" |]).run() |> (printfn "%A")
+FooCommand([| "proto://test%5Cfoo%5Cbar?p1=abc&p2=def" |]).run() |> (printfn "%A")
 
 // let cmd = FooCommand([| "proto://test%5Cfoo%5Cbar" |])
 
