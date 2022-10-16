@@ -18,7 +18,7 @@ type ProtocolAttribute (name: string) =
 
 let private proto'type = typeof<ProtocolAttribute>
 let inline private get'customattrs<'a> (mi: MethodInfo) = mi.GetCustomAttributes(typeof<'a>, false).OfType<'a>().ToArray()
-let inline private fst'customattr<'a> (mi: MethodInfo) = (get'customattrs<'a> mi).FirstOrDefault()
+let inline private get'protoattr (mi: MethodInfo) = (get'customattrs<ProtocolAttribute> mi).FirstOrDefault()
 
 [<AbstractClass>]
 type Command (args: string[], ?is'fsx: bool) =
@@ -30,7 +30,6 @@ type Command (args: string[], ?is'fsx: bool) =
       then if 1 < args.Length then args.[1] else ""
       else ""
     | None -> args.FirstOrDefault()
-    // HttpUtility.UrlDecode(parameter, UTF8Encoding(false))
   let ctx' =
     let decode (s: string) = HttpUtility.UrlDecode(s, UTF8Encoding(false))
     let idx = raw'.IndexOf ":"
@@ -58,8 +57,8 @@ type Command (args: string[], ?is'fsx: bool) =
     let method = 
       __.GetType()
         .GetMethods()
-        .FirstOrDefault(fun m -> m.IsDefined(proto'type, false) && (m |> fst'customattr<ProtocolAttribute>).name = ctx'.cmd)
-    if method <> Unchecked.defaultof<_>
+        .FirstOrDefault(fun m -> m.IsDefined(proto'type, false) && (get'protoattr m).name = ctx'.cmd)
+    if method <> Unchecked.defaultof<_> && method.GetParameters().Length = 0
     then Ok (method.Invoke(__, null))
     else Error $"Not found protocol: {ctx'.cmd}"
     

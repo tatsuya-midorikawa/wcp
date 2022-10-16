@@ -3,9 +3,15 @@
   [<Wcp.Protocol(name = "proto")>]
   member __.foo() =
     printfn $"{__.ctx}"
+  [<Wcp.Protocol(name = "proto2")>]
+  member __.foo(a: string, b: int) =
+    printfn $"{__.ctx}"
+  [<Wcp.Protocol(name = "proto3")>]
+  member __.foo(p: {| a: string; b: int |}) =
+    printfn $"{__.ctx}"
 
-FooCommand([| "proto://test%5Cfoo%5Cbar" |]).run() |> (printfn "%A")
-FooCommand([| "proto://test%5Cfoo%5Cbar?p1=abc&p2=def" |]).run() |> (printfn "%A")
+// FooCommand([| "proto://test%5Cfoo%5Cbar" |]).run() |> (printfn "%A")
+// FooCommand([| "proto://test%5Cfoo%5Cbar?p1=abc&p2=def" |]).run() |> (printfn "%A")
 
 // let cmd = FooCommand([| "proto://test%5Cfoo%5Cbar" |])
 
@@ -26,9 +32,21 @@ FooCommand([| "proto://test%5Cfoo%5Cbar?p1=abc&p2=def" |]).run() |> (printfn "%A
 //   member __.a() = ()
 //   member __.b() = ()
 
-// let foo = Foo()
-// let ty = foo.GetType()
-// let methods = ty.GetMethods()
+let foo = FooCommand([| "proto://test%5Cfoo%5Cbar" |])
+let ty = foo.GetType()
+let methods =
+  ty.GetMethods()
+  |> Array.filter (fun m -> m.IsDefined(typeof<Wcp.ProtocolAttribute>, false))
+
+methods
+|> Array.iter (fun m -> 
+  let ps = m.GetParameters()
+  printfn $"{m}"
+  ps |> Array.iter (fun p -> printfn $"{p.ParameterType}: {p.Name} ({p.Position})")
+  )
+
+let xs = [| "a"; "b" |]
+let ys = {| xs[0]= xs[1] |}
 // methods
 // |> Array.filter (fun m -> m.IsDefined(typeof<Wcp.ProtocolAttribute>, false))
 // |> Array.iter (fun m -> 
