@@ -7,7 +7,9 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "wcp", "wcp\wcp.fsproj", "{2
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "wcp.test", "wcp.test\wcp.test.fsproj", "{778413DE-25B8-4A45-BAC7-C0077940318C}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "wcp.console", "wcp.console\wcp.console.fsproj", "{8DC2CCB7-B51C-42C1-8DDB-BAFB468B827D}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "wcp.console", "wcp.console\wcp.console.fsproj", "{8DC2CCB7-B51C-42C1-8DDB-BAFB468B827D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcp.csharp.exp", "wcp.csharp.exp\wcp.csharp.exp.csproj", "{0D2266F6-AFF7-4845-B91B-744348D45C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8DC2CCB7-B51C-42C1-8DDB-BAFB468B827D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DC2CCB7-B51C-42C1-8DDB-BAFB468B827D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DC2CCB7-B51C-42C1-8DDB-BAFB468B827D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D2266F6-AFF7-4845-B91B-744348D45C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D2266F6-AFF7-4845-B91B-744348D45C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D2266F6-AFF7-4845-B91B-744348D45C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D2266F6-AFF7-4845-B91B-744348D45C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

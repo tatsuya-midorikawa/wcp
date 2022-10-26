@@ -1,4 +1,4 @@
-﻿module Wcp
+﻿module Wcp 
 
 open System
 open System.Linq
@@ -21,7 +21,7 @@ let inline private get'customattrs<'a> (mi: MethodInfo) = mi.GetCustomAttributes
 let inline private get'protoattr (mi: MethodInfo) = (get'customattrs<ProtocolAttribute> mi).FirstOrDefault()
 
 [<AbstractClass>]
-type Command (args: string[], ?is'fsx: bool) =
+type public Command (args: string[], ?is'fsx: bool) =
   let args' = args
   let raw' =
     match is'fsx with
