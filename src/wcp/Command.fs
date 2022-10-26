@@ -10,9 +10,9 @@ open System.Reflection
 type internal dict<'key, 'value> = Dictionary<'key, 'value>
 // type Context = { cmd: string; q: string; parameters: dict<string, string> }
 
-type Context = { cmd: string; q: string; parameters: dict<string, string> }
+type public Context = { cmd: string; q: string; parameters: dict<string, string> }
 
-type ProtocolAttribute (name: string) =
+type public ProtocolAttribute (name: string) =
   inherit Attribute()
   member val name = name with get
 
@@ -28,7 +28,7 @@ type public Command (args: string[], ?is'fsx: bool) =
     | Some is'fsx -> 
       if is'fsx
       then if 1 < args.Length then args.[1] else ""
-      else ""
+      else args.FirstOrDefault()
     | None -> args.FirstOrDefault()
   let ctx' =
     let decode (s: string) = HttpUtility.UrlDecode(s, UTF8Encoding(false))

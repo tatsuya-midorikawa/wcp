@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "wcp.csharp.exp": {
+      "commandName": "Project",
+      "commandLineArgs": "proto://test%5Cfoo%5Cbar"
+    }
+  }
+}

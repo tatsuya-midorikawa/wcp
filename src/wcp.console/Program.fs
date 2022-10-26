@@ -44,9 +44,6 @@ methods
   printfn $"{m}"
   ps |> Array.iter (fun p -> printfn $"{p.ParameterType}: {p.Name} ({p.Position})")
   )
-
-let xs = [| "a"; "b" |]
-let ys = {| xs[0]= xs[1] |}
 // methods
 // |> Array.filter (fun m -> m.IsDefined(typeof<Wcp.ProtocolAttribute>, false))
 // |> Array.iter (fun m -> 
