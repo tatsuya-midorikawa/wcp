@@ -66,6 +66,3 @@ type public Command (args: string[], ?is'fsx: bool) =
     if method <> Unchecked.defaultof<_> && method.GetParameters().Length = 0
     then Ok (method.Invoke(__, null))
     else Error $"Not found protocol: {ctx'.cmd}"
-
-let run<'T> (args: string[]) =
-  0
