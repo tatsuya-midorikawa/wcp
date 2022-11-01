@@ -50,10 +50,15 @@ type public Command (args: string[], ?is'fsx: bool) =
       else dict<string, string>()
     { cmd = cmd; q = q; parameters = ps}
 
-  member __.args = args'
-  member __.raw = raw'
-  member __.ctx = ctx'
-  member __.run() =
+  
+  [<CompiledName("Args")>]
+  member public __.args = args'
+  [<CompiledName("Raw")>]
+  member public __.raw = raw'
+  [<CompiledName("Ctx")>]
+  member public __.ctx = ctx'
+  [<CompiledName("Run")>]
+  member public __.run() =
     let method = 
       __.GetType()
         .GetMethods()
@@ -61,7 +66,6 @@ type public Command (args: string[], ?is'fsx: bool) =
     if method <> Unchecked.defaultof<_> && method.GetParameters().Length = 0
     then Ok (method.Invoke(__, null))
     else Error $"Not found protocol: {ctx'.cmd}"
-    
 
 let run<'T> (args: string[]) =
   0
