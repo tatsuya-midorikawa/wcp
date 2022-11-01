@@ -57,8 +57,8 @@ type public Command (args: string[], ?is'fsx: bool) =
   member public __.raw = raw'
   [<CompiledName("Ctx")>]
   member public __.ctx = ctx'
-  [<CompiledName("Run")>]
-  member public __.run() =
+  [<CompiledName("Exec")>]
+  member public __.exec() =
     let method = 
       __.GetType()
         .GetMethods()

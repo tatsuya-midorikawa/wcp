@@ -16,7 +16,7 @@ class EntryPoint
 {
   public static void Main(string[] args)
   {
-    new FooCommand(args).Run();
+    new FooCommand(args).Exec();
     Console.WriteLine("end");
     Console.ReadKey();
   }
